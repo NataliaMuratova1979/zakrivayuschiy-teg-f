@@ -1,1 +1,31 @@
 /* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+
+:root { 
+  --main-font: 'Inter', Arial, sans-serif; /* основной шрифт Inter */
+  --accent-font: 'Press Start 2P', Charcoal, fantasy; /* акцентный шрифт PressStart2P */
+  --fill-heart: red;
+  --contour-heart: black;
+} 
+
+@media (width <= 357px) { /*на экране до 375px*/
+  .header {
+    width: 100vw;
+  }
+
+  .sections {
+    width: 100vw;
+  }
+
+  .card__floppy-button {
+    flex-direction: column;
+
+  }
+
+  .dialog-button {
+    padding: 12.5px 114.5px;
+  }
+
+  .icon {
+    width: 28px; /*иконка на кнопке Сохранить на память*/
+  }
+}

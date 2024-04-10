@@ -6,9 +6,71 @@
 ✦ like-icon — для svg-иконки анимированного сердца
 ✦ card__like-button — для кнопки Like рядом с иконкой
 ✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
 ✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 */
+
+@keyframes arrow-move-to-right { /*анимация стрелочки*/
+    from {
+      left: -14px;
+    }
+  
+    50% {
+      left: -10px;
+    }
+  
+    to {
+      left: -14px;
+    }
+  }
+  
+  @keyframes clicked-core { /*анимация сердцевины*/
+    0% {
+      fill: none;
+    }
+    100% {
+      fill: var(--fill-heart);
+    }
+  }
+
+  @keyframes clicked-main-body { /*анимация основного тела*/
+    0% {
+      fill: none;
+    }
+    100% {
+      fill: var(--fill-heart);
+    }
+  }
+  
+  @keyframes clicked-contour { /*анимация контура*/
+    0% {
+      fill: var(--fill-heart);
+    }
+    100% {
+      fill: var(--fill-heart);
+    }
+  }
+  
+  @keyframes clicked-heart { /*масштабирование сердца*/
+    0% {
+      transform: scale(1.0);
+    }
+    100% {
+      fill: var(--fill-heart);
+      transform: scale(1.5);
+      transform: translateX(0) translateY(0); /*масштабируем от центра*/
+    }
+  }
+
+  @keyframes clicked-sparks { /*анимация искр*/
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+     opacity: 1;
+    }
+  }
+
