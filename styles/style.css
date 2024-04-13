@@ -29,10 +29,10 @@
 .header {
   margin: auto;
   display: grid;
-  width: clamp(23.438rem, 16.285rem + 30.516vw, 43.75rem); /* 100% на мобильной версии */
+  inline-size: clamp(23.438rem, 16.285rem + 30.516vw, 43.75rem); /* 100% на мобильной версии */
   background-color: var(--background-color);
   font-family: var(--accent-font);
-  padding: clamp(0.875rem, 0.633rem + 1.033vw, 1.563rem); /*25px 14px*/
+  padding-block-end: 25px;
   justify-content: center;
   justify-items: center;
   border: 2px solid var(--accent-color);
@@ -40,13 +40,14 @@
   margin-block-end: 100px;
 }
 
-.header_title {
+.header_title_logo {
   font-size: clamp(3.063rem, 2.71rem + 1.502vw, 4.063rem); /* 65px 49px */
   align-self: center;
+  text-transform: uppercase;
   margin-block-end: 20px; /* везде */
 }
 
-.header_subtitle {
+.header_title {
   font-size: clamp(0.875rem, 0.677rem + 0.845vw, 1.438rem); /* 23px 14px */
   align-self: center;
   text-transform: uppercase;
@@ -76,6 +77,8 @@
   font-size: 14px;
   line-height: 11px;
   position: relative;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
 }
 
 .theme-menu__button:hover { /*по ховеру и в состоянии disabled кнопки становятся прозрачными, нужное значение 0.6*/
@@ -137,7 +140,7 @@
  width: clamp(23.438rem, 16.285rem + 30.516vw, 43.75rem); /* переделать в clamp,100% на мобильной версии */
  display: flex;
  flex-direction: column;
- gap: 52px;
+ gap: 48px;
 }
 
 .content { /*блок заголовок + картинка + абзацы */
@@ -151,7 +154,7 @@
   padding: 3.5px 10px 5.5px 10px;
   font-family: var(--main-font);
   font-size: 18px;
-  font-weight: 700;
+  font-weight: var(--title-width-bold);
 }
 
 .image-cover { /*блок картинка плюс label*/
@@ -174,9 +177,7 @@
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: var(--label-stroke);
   mix-blend-mode: hard-light;
-}
-
-.image-label { /*фоллбек для text-stroke*/
+  text-transform: uppercase;
   text-shadow: 1px var(--label-stroke);
 }
 
@@ -212,35 +213,35 @@
 
 /*_________________Фильтры для картинок_________________*/
 
-.picture_freetrack {
+.picture_contrast {
   filter: contrast(150%);
 }
 
-.picture_sprint_1-1 {
+.picture_saturate {
   filter: saturate(200%);
 }
 
-.picture_sprint_1-2{
+.picture_grayscale {
   filter: grayscale(10%);
 }
 
-.picture_sprint_2-1 {
+.picture_hue-rotate-invert-brightness {
   filter: hue-rotate(200deg) invert(90%) brightness(140%);
 }
 
-.picture_sprint_2-2 {
+.picture_sepia-contrast {
   filter: sepia(5%) contrast(120%);
 }
 
-.picture_sprint_3-1 {
+.picture_sepia-hue-rotate {
   filter: sepia(20%) hue-rotate(20deg);
 }
 
-.picture_sprint_3-2 {
+.picture_brightness-contrast {
   filter: brightness(50%) contrast(120%);
 }
 
-.picture_sprint_4 {
+.picture_saturate-two {
   filter: saturate(200%);
 }
 
@@ -249,42 +250,87 @@
 .heart-like-buttons { /*выравниваем весь блок*/
   justify-self: end;
   margin-inline-end: 25px;
-  margin-block-end: 25px;
+  margin-block-end: 24px;
   display: flex;
-  /*gap: 12px;*/
+  gap: 6px;
   align-items: center;
 }
 
-/*_________________кнопка Like___________________*/
-
+/*_________________Сердце_______________card__icon-button_*/
 .card__icon-button { /*для кнопки, оборачивающей иконку*/
   -webkit-appearance: none; 
   -moz-appearance: none;
        appearance: none;
   list-style-type: none;
   background-color: transparent;
+  align-self: center;
   padding: 0;
   transition: border 0.3s ease;
   border: 0;
 }
 
-.like-icon {
+.like-icon {/* селектор svg сердца */
+  margin-top: 3px;
+  cursor: pointer;
   border: 2px solid transparent;
 }
+
+.core { /*сердцевина*/
+  transition-property: fill;
+  transition-duration: 0.3s;
+  transition-delay: 0.03s; /*когда курсор уходит, задержка 0.03s*/
+  transition-timing-function: linear;
+}
+
+.main-body { /*основное тело сердца*/
+  transition-property: fill;
+  transition-duration: 0.3s; /*обратно перекрашивается без задержки*/
+  transition-timing-function: linear;
+}
+
+.sparks { /*прозрачность искр*/
+  opacity: 0;
+}
+
+.card__icon-button .core { /*cелектор svg сердца*/
+  fill: var(--contour-heart);
+  transition: fill 0.3s linear; /*меняем значение сразу при наведении мышки и в течении 0.3*/
+} 
 
 .card__icon-button:focus { /*кнопка сердце*/
   outline: none;
   border: none;
 }
 
-.card__icon-button:focus-visible .like-icon {
-  border: 2px solid var(--accent-color);
+.card__icon-button:focus-visible {
+  outline-offset: -6px;
+  outline: 2px solid var(--accent-color);
+}
+
+.card__icon-button:hover .core {
+  fill: var(--accent-color);
+  transition: fill 0.3s linear;
+}
+
+.card__icon-button:hover .main-body { /*селектор svg + основное тело сердца*/
+  fill: var(--accent-color);
+  transition: fill 0.3s 0.05s linear; /*меняет цвет с задержкой 0.05s*/
+}
+
+.card__icon-button:active .core { /*селектор svg сердца + cердцевина*/
+  fill: var(--fill-heart);
+  transition: fill 0.3s linear;
+} 
+
+.card__icon-button:active .main-body {
+  fill: var(--fill-heart);
+  transition: fill 0.3s 0.05s linear;
 }
 
 /*_______Кнопка Like ________ (card__like-button) */
 
 .card__like-button { /*кнопка Like*/
-  padding: 11px 35px;
+  padding: 10.5px 35px;
   font-family: var(--accent-font);
   color: var(--accent-color);
   font-size: 14px;
@@ -320,14 +366,14 @@
 .shadow-button:focus-visible { 
   border: 2px solid var(--accent-color);
   box-shadow: 2px 2px 0 0 var(--accent-color);
-  transition: box-shadow 0.6s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 /*__________________Кнопка Cохранить__________________*/
 
 .card__floppy-button { 
   margin: auto;
-  margin-top: 50px; /* */
+  /*margin-top: 50px;  */
   margin-bottom: 105px;  /* */
   font-family: var(--accent-font);
   font-size: 14px;
@@ -380,89 +426,7 @@
 }
 
 .button__text:hover { /*кнопка Like*/
-  color: var(--background-color);
-}
-
-/*_________________Сердце________________*/
-
-.sparks { /*прозрачность искр*/
-  opacity: 0;
-}
-
-.like-icon {/* селектор svg сердца */
-  margin-top: 3px;
-  cursor: pointer;
-}
-
-.core { /*сердцевина*/
-  transition-property: fill;
-  transition-duration: 0.3s;
-  transition-delay: 0.03s; /*когда курсор уходит, задержка 0.03s*/
-  transition-timing-function: linear;
-}
-
-.like-icon:hover .core { /*cелектор svg сердца*/
-  fill: var(--contour-heart);
-  transition: fill 0.3s linear; /*меняем значение сразу при наведении мышки и в течении 0.3*/
-} 
-
-.like-icon:active .core { /*селектор svg сердца + cердцевина*/
-  fill: var(--fill-heart);
-  transition: fill 0.3s linear;
-} 
-
-.main-body { /*основное тело сердца*/
-  transition-property: fill;
-  transition-duration: 0.3s; /*обратно перекрашивается без задержки*/
-  transition-timing-function: linear;
-}
-
-.like-icon:hover .main-body { /*селектор svg + основное тело сердца*/
-  fill: var(--contour-heart);
-  transition: fill 0.3s 0.05s linear; /*меняет цвет с задержкой 0.05s*/
-}
-
-.like-icon:active .main-body {
-  fill: var(--fill-heart);
-  transition: fill 0.3s 0.05s linear;
-}
-
-/*_______________Клик по кнопке________________*/
-
-.like-icon.is-liked .core { /*анимация сердцевины*/
-  animation-name: clicked-core;
-  animation-duration: 0.3s;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards; /*оставить красненьким*/
-}
-
-.like-icon.is-liked .main-body { /*анимация основного тела*/
-  animation-name: clicked-main-body;
-  animation-duration: 0.3s;
-  animation-delay: 0.06s;
-  animation-fill-mode: forwards; /*оставить красненьким*/
-}
-
-.like-icon.is-liked .contour { /*анимация контура*/
-  animation-name: clicked-contour;
-  animation-duration: 0.3s;
-  animation-delay: 0.06s;
-}
-
-.like-icon.is-liked .heart { /*масштабирование сердца*/
-  animation-name: clicked-heart;
-  animation-duration: 0.3s;
-  animation-delay: 0.1s;
-  animation-timing-function: ease-in;
-  animation-direction: alternate-reverse;
-}
-
-.like-icon.is-liked .sparks { /*анимация искр*/
-  animation-name: clicked-sparks;
-  animation-duration: 0.3s;
-  animation-delay: 0.3s;
-  animation-timing-function: ease-in;
-  animation-direction: alternate-reverse;
+  color: var(--button-text-color);
 }
 
 /*_______________ДИАЛОГ__________________*/
@@ -481,7 +445,8 @@ dialog:is([open]) { /*отображение открытого модально
   position: fixed;
   transform: 50%;
   z-index: 3;
-  padding: 30px;
+  padding-block-start: 30px;
+  padding-block-end: 30px;
   background-color: var(--background-color);
   border: 2px solid var(--accent-color);
 }
@@ -518,6 +483,30 @@ dialog:is([open]) { /*отображение открытого модально
   background-color: var(--background-color);
   text-transform: uppercase;
   color: var(--accent-color);
+  position: relative;
+}
+
+.dialog-button:focus {
+  outline: none;
+}
+
+.dialog-button:after { /*псевдоэлемент для кнопки*/
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--button-hover); 
+  transition: transform 0.5s ease-in-out;
+  transform: scaleX(0);
+  transform-origin: 0 0;
+}
+
+.dialog-button:hover::after { /*псевдоэлемент выезжает по наведению на кнопку*/
+  transform-origin: 0 0;
+  transform: scaleX(1);
 }
 
 .icon { /*иконка на кнопке Сохранить на память*/
@@ -537,4 +526,27 @@ dialog:is([open]) { /*отображение открытого модально
 dialog::backdrop {
   background-color: #000;
   opacity: 75%;
+}
+
+/*на экране до 375px*/
+@media (width <= 375px) { 
+  .header {
+    width: 100vw;
+  }
+
+  .sections {
+    width: 100vw;
+  }
+
+  .card__floppy-button { 
+    flex-direction: column; /* на мобильной версии column */
+  }
+
+  .dialog-button {
+    padding: 12.5px 114.5px;
+  }
+
+  .icon {
+    width: 28px; /*иконка на кнопке Сохранить на память*/
+  }
 }

@@ -5,27 +5,36 @@
   --accent-font: 'Press Start 2P', Charcoal, fantasy; /* акцентный шрифт PressStart2P */
   --fill-heart: red;
   --contour-heart: black;
+
+  --text-width-regular: 400;/* толщина основного текста 400 light 465 dark */
+  --text-width-bold: 465;/* толщина заголовка 465 light 785 dark */
+  --title-width-bold: 700; /* толщина заголовка секции 700 light 785 dark */
+  --background-color: #fff;/* #FFFFFF light #000000 dark */
+  --accent-color: #000; /* #000000 light #00cc14 dark */
+  --button-text-color: #fff;
+  --label-text: #000;
+  --label-stroke: #fff;
+  --button-hover: #000;
+  --contour-color: #000;
+
+  --background-image: 
+  repeating-linear-gradient(
+    90deg,
+    #d3d3d3 0,
+    #d3d3d3 2px,
+    transparent 2px,
+    transparent 4px
+  ),
+  repeating-linear-gradient(
+    #d3d3d3 0,
+    #d3d3d3 2px,
+    transparent 2px,
+    transparent 4px
+  ), 
+  linear-gradient(
+    #e7e7e7 0,
+    #e7e7e7 0,01%,
+    #1a1a1a
+  );
 } 
 
-@media (width <= 357px) { /*на экране до 375px*/
-  .header {
-    width: 100vw;
-  }
-
-  .sections {
-    width: 100vw;
-  }
-
-  .card__floppy-button {
-    flex-direction: column;
-
-  }
-
-  .dialog-button {
-    padding: 12.5px 114.5px;
-  }
-
-  .icon {
-    width: 28px; /*иконка на кнопке Сохранить на память*/
-  }
-}

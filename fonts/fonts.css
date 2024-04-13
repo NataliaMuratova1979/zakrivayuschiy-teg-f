@@ -12,8 +12,7 @@
     src: url(./Inter-Variable.woff2) format('woff2 supports variations'),
          url(./Inter-Variable.woff2) format('woff2-variations');
          font-weight: 400 785;    /*[минимальное значение] [максимальное значение]*/
-         font-stretch: ;   /*[минимальное значение]% [максимальное значение]%*/;
-}
+    }
 
 @supports (font-variation-settings: normal) {
     body {

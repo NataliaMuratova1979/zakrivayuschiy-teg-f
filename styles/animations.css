@@ -12,6 +12,7 @@
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 */
 
+
 @keyframes arrow-move-to-right { /*анимация стрелочки*/
     from {
       left: -14px;
@@ -24,8 +25,17 @@
     to {
       left: -14px;
     }
+}
+
+/*_______________Клик по кнопке________________*/
+
+.like-icon.is-liked .core { /*анимация сердцевины*/
+    animation-name: clicked-core;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards; /*оставить красненьким*/
   }
-  
+
   @keyframes clicked-core { /*анимация сердцевины*/
     0% {
       fill: none;
@@ -34,7 +44,14 @@
       fill: var(--fill-heart);
     }
   }
-
+  
+  .like-icon.is-liked .main-body { /*анимация основного тела*/
+    animation-name: clicked-main-body;
+    animation-duration: 0.3s;
+    animation-delay: 0.06s;
+    animation-fill-mode: forwards; /*оставить красненьким*/
+  }
+  
   @keyframes clicked-main-body { /*анимация основного тела*/
     0% {
       fill: none;
@@ -42,6 +59,13 @@
     100% {
       fill: var(--fill-heart);
     }
+  }
+
+  .like-icon.is-liked .contour { /*анимация контура*/
+    animation-name: clicked-contour;
+    animation-duration: 0.3s;
+    animation-delay: 0.06s;
+    animation-fill-mode: forwards; /*оставить красненьким*/
   }
   
   @keyframes clicked-contour { /*анимация контура*/
@@ -52,7 +76,15 @@
       fill: var(--fill-heart);
     }
   }
-  
+
+  .like-icon.is-liked .heart { /*масштабирование сердца*/
+    animation-name: clicked-heart;
+    animation-duration: 0.3s;
+    animation-delay: 0.1s;
+    animation-timing-function: ease-in;
+    animation-direction: alternate-reverse;
+  }
+
   @keyframes clicked-heart { /*масштабирование сердца*/
     0% {
       transform: scale(1.0);
@@ -62,6 +94,14 @@
       transform: scale(1.5);
       transform: translateX(0) translateY(0); /*масштабируем от центра*/
     }
+  }
+  
+  .like-icon.is-liked .sparks { /*анимация искр*/
+    animation-name: clicked-sparks;
+    animation-duration: 0.3s;
+    animation-delay: 0.3s;
+    animation-timing-function: ease-in;
+    animation-direction: alternate-reverse;
   }
 
   @keyframes clicked-sparks { /*анимация искр*/
@@ -73,4 +113,3 @@
      opacity: 1;
     }
   }
-
