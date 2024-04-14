@@ -89,10 +89,11 @@
     0% {
       transform: scale(1.0);
     }
+    
     100% {
       fill: var(--fill-heart);
       transform: scale(1.5);
-      transform: translateX(0) translateY(0); /*масштабируем от центра*/
+      transform-origin: center; /*масштабируем от центра*/
     }
   }
   
@@ -113,3 +114,5 @@
      opacity: 1;
     }
   }
+
+

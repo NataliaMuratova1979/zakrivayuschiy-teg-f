@@ -16,6 +16,7 @@
     --contour-color: #00cc14;
     --label-text: #00cc14;
     --label-stroke: #000;
+    --dialog-title-weight: 400;
 
     --background-image: 
     repeating-linear-gradient(
@@ -48,6 +49,7 @@
     --contour-color: #00cc14;
     --label-text: #00cc14;
     --label-stroke: #000;
+    --dialog-title-weight: 400;
   
     --background-image: 
     repeating-linear-gradient(
@@ -80,6 +82,7 @@
     --label-stroke: #fff;
     --button-hover: #000;
     --contour-color: #000;
+    --dialog-title-weight: 400;
   
     --background-image: 
     repeating-linear-gradient(

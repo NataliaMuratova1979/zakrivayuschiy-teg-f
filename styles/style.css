@@ -207,7 +207,7 @@
 .sprint-text { /*свойства текста контент-абзацы*/
   font-family: var(--main-font);
   font-size: 18px;
-  font-weight: 400;
+  font-weight: --var(-text-width-regular);
   line-height: 21px;
 }
 
@@ -257,6 +257,7 @@
 }
 
 /*_________________Сердце_______________card__icon-button_*/
+
 .card__icon-button { /*для кнопки, оборачивающей иконку*/
   -webkit-appearance: none; 
   -moz-appearance: none;
@@ -293,7 +294,7 @@
 }
 
 .card__icon-button .core { /*cелектор svg сердца*/
-  fill: var(--contour-heart);
+  fill: transparent;
   transition: fill 0.3s linear; /*меняем значение сразу при наведении мышки и в течении 0.3*/
 } 
 
@@ -330,7 +331,8 @@
 /*_______Кнопка Like ________ (card__like-button) */
 
 .card__like-button { /*кнопка Like*/
-  padding: 10.5px 35px;
+  inline-size: 130px;
+  block-size: 38px;
   font-family: var(--accent-font);
   color: var(--accent-color);
   font-size: 14px;
@@ -373,13 +375,12 @@
 
 .card__floppy-button { 
   margin: auto;
-  /*margin-top: 50px;  */
-  margin-bottom: 105px;  /* */
+  margin-bottom: 105px;  
   font-family: var(--accent-font);
   font-size: 14px;
   line-height: 12.6px;
   border: 2px solid var(--accent-color); /*переменная*/
-  padding: 18.5px 21px;
+  padding: 15px 21px;
   display: flex;
   flex-direction: row; /* на мобильной версии column */
   gap: 8px;
@@ -423,6 +424,7 @@
   color: var(--button-text-color);
   z-index: 2;
   mix-blend-mode: difference;
+  
 }
 
 .button__text:hover { /*кнопка Like*/
@@ -439,14 +441,12 @@ dialog:not([open]) { /*закрытое модальное окно*/
 dialog:is([open]) { /*отображение открытого модального окна*/
   display: grid;
   grid-auto-columns: 39px min-content;
-  grid-auto-rows: 2;
+  grid-auto-rows: auto;
   row-gap: 30px;
   column-gap: 20px;
-  position: fixed;
-  transform: 50%;
+  margin: auto;
   z-index: 3;
-  padding-block-start: 30px;
-  padding-block-end: 30px;
+  padding: 32px;
   background-color: var(--background-color);
   border: 2px solid var(--accent-color);
 }
@@ -465,7 +465,7 @@ dialog:is([open]) { /*отображение открытого модально
   font-size: 14px;
   line-height: 21px;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: var(--dialog-title-weight);
   color: var(--accent-color);
 }
 
@@ -475,7 +475,7 @@ dialog:is([open]) { /*отображение открытого модально
 }
 
 .dialog-button { /*кнопка OK на модальном окне*/
-  padding: 12.5px 132.5px;
+  padding: 12.5px 129px;
   font-family: var(--accent-font);
   font-size: 14px;
   line-height: 12.6px;
@@ -542,11 +542,19 @@ dialog::backdrop {
     flex-direction: column; /* на мобильной версии column */
   }
 
+  dialog:is([open]) {
+    padding-inline-start: 39px;
+    padding-inline-end: 39px;
+  }
+
   .dialog-button {
-    padding: 12.5px 114.5px;
+    padding: 12.5px 111.5px;
   }
 
   .icon {
     width: 28px; /*иконка на кнопке Сохранить на память*/
   }
 }
+
+
+

@@ -9,6 +9,8 @@
   --text-width-regular: 400;/* толщина основного текста 400 light 465 dark */
   --text-width-bold: 465;/* толщина заголовка 465 light 785 dark */
   --title-width-bold: 700; /* толщина заголовка секции 700 light 785 dark */
+  --dialog-title-weight: 400;
+  
   --background-color: #fff;/* #FFFFFF light #000000 dark */
   --accent-color: #000; /* #000000 light #00cc14 dark */
   --button-text-color: #fff;
